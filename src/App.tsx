@@ -10,7 +10,6 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import Input from '@material-ui/core/Input';
-import Note from './components/Note';
 import NoteCreate from './components/NoteCreate';
 
 const styles = (theme: any) => ({
@@ -30,7 +29,7 @@ const styles = (theme: any) => ({
   },
 });
 
-class App extends Component<{ classes: any }, { notes: Array<any> }> {
+class App extends Component<{ classes: any }, { notes: any[] }> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -44,16 +43,16 @@ class App extends Component<{ classes: any }, { notes: Array<any> }> {
     this.editNote = this.editNote.bind(this);
   }
 
-  public addNote() {
-    alert('add note');
-    this.setState(previousState => ({
-      notes: [...previousState.notes, 'new value'],
-    }));
+  public addNote(title: string, note: string) {
+    const newArray = this.state.notes.slice();
+    newArray.push({ title, note });
+    this.setState({ notes: newArray });
   }
 
-  public editNote(note: object) {
+  public editNote(title: string, note: string, id: number) {
     const newArray = this.state.notes.slice();
-    newArray.push({ title: 'note   999', note: 'this is my sic note' });
+    newArray[id].title = title;
+    newArray[id].note = note;
     this.setState({ notes: newArray });
   }
 
@@ -66,11 +65,8 @@ class App extends Component<{ classes: any }, { notes: Array<any> }> {
         <CssBaseline />
         <ButtonAppBar />
         <main className={classes.layout}>
-          <div>
-            <NoteCreate edit={this.editNote} />
-          </div>
-          <NotesList notes={notes} create={this.addNote} />
-          <Note note={notes[0]} />
+          <NoteCreate edit={this.addNote} />
+          <NotesList notes={notes} edit={this.editNote} create={this.addNote} />
         </main>
       </React.Fragment>
     );

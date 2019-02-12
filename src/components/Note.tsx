@@ -5,13 +5,20 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import EditIcon from '@material-ui/icons/Edit';
 import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
 
 const styles = (theme: any) => ({
   root: {
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
-    marginTop: theme.spacing.unit * 2,
+    marginTop: 0,
+    borderTop: '1px solid rgba(0,0,0,0.3)',
+  },
+  title: {
+    color: '#3f51b5',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
   },
 });
 
@@ -21,14 +28,18 @@ function Note(props: any) {
   return (
     <div>
       <Paper className={classes.root} elevation={1}>
-        <Typography variant="h5" component="h3">
+        <Typography variant="h5" className={classes.title} gutterBottom={true} component="h5">
           {note.title}
         </Typography>
-        <Typography component="p">{note.note}</Typography>
-
-        <Button color="primary">
-          <EditIcon />
-        </Button>
+        <Divider variant="middle" />
+        <Typography
+          style={{ whiteSpace: 'pre-wrap' }}
+          component="p"
+          variant="body2"
+          paragraph={true}
+        >
+          {note.note}
+        </Typography>
       </Paper>
     </div>
   );

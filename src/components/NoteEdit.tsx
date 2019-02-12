@@ -7,12 +7,23 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import withStyles from '@material-ui/core/styles/withStyles';
+import IconButton from '@material-ui/core/IconButton';
+import EditIcon from '@material-ui/icons/Edit';
 
-export default class FormDialog extends React.Component<{ edit: any }, {}> {
+const styles = (theme: any) => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+});
+
+class NoteEdit extends React.Component<
+  { edit: any; classes: any; title: string; note: string; index: number },
+  {}
+> {
   public state = {
     open: false,
-    note: '',
-    title: '',
+    note: this.props.note,
+    title: this.props.title,
   };
 
   public constructor(props: any) {
@@ -37,12 +48,12 @@ export default class FormDialog extends React.Component<{ edit: any }, {}> {
   public handleSubmit = (event: any) => {
     event.preventDefault();
     this.setState({ open: false, title: '', note: '' });
-    this.props.edit(this.state.title, this.state.note);
+    this.props.edit(this.state.title, this.state.note, this.props.index);
   };
 
   public handleChange(event: any) {
     const target = event.target;
-    const value = target.value;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
     this.setState({
@@ -51,24 +62,20 @@ export default class FormDialog extends React.Component<{ edit: any }, {}> {
   }
 
   public render() {
+    const { classes } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
-        <Button
-          variant="outlined"
-          color="primary"
-          onClick={this.handleClickOpen}
-          style={{ marginBottom: '1rem' }}
-        >
-          New Note
-        </Button>
+        <IconButton onClick={this.handleClickOpen} className={classes.button} aria-label="Delete">
+          <EditIcon />
+        </IconButton>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Create a new Note</DialogTitle>
+          <DialogTitle id="form-dialog-title">Editing Note</DialogTitle>
           <DialogContent>
-            <DialogContentText>Add a new note...</DialogContentText>
+            <DialogContentText>Edit Note</DialogContentText>
             <TextField
               multiline={true}
               autoFocus={true}
@@ -99,7 +106,7 @@ export default class FormDialog extends React.Component<{ edit: any }, {}> {
               Cancel
             </Button>
             <Button onClick={this.handleSubmit} color="primary">
-              Add Note
+              Edit Note
             </Button>
           </DialogActions>
         </Dialog>
@@ -107,3 +114,5 @@ export default class FormDialog extends React.Component<{ edit: any }, {}> {
     );
   }
 }
+
+export default withStyles(styles)(NoteEdit);
