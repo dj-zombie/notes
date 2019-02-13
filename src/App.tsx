@@ -43,6 +43,10 @@ class App extends Component<{ classes: any }, { notes: any[] }> {
     this.editNote = this.editNote.bind(this);
   }
 
+  public componentDidMount() {
+    fetch('/');
+  }
+
   public addNote(title: string, note: string) {
     const newArray = this.state.notes.slice();
     newArray.push({ title, note });
