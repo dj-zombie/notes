@@ -2,6 +2,8 @@
 
 A simple note taking application with the ability to add and edit notes.
 
+![screenshot](https://user-images.githubusercontent.com/42399304/52692249-454e7100-2f18-11e9-85b6-e105da5f13c5.png)
+
 ## Development
 
 - `$ npm install`

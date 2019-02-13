@@ -34,9 +34,15 @@ class App extends Component<{ classes: any }, { notes: any[] }> {
     super(props);
     this.state = {
       notes: [
-        { title: 'note1', note: 'this is my note' },
-        { title: 'note2', note: 'this is another note' },
-        { title: 'note3', note: 'last note' },
+        {
+          title: 'Computer Security is FUN',
+          note: `This is a test for XSS...\n\n';alert(String.fromCharCode(88,83,83))//';alert(String.fromCharCode(88,83,83))`,
+        },
+        {
+          title: 'JSX escaping test',
+          note: '<a onmouseover="alert(document.cookie)">xxs link</a>',
+        },
+        { title: 'OWASP', note: 'Stay up to date with\nhttps://www.owasp.org\nAND THE TOP 10!' },
       ],
     };
     this.addNote = this.addNote.bind(this);
