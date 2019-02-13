@@ -7,14 +7,8 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import NoteIcon from '@material-ui/icons/Note';
-import NotesIcon from '@material-ui/icons/Notes';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import Note from './Note';
 import MenuItem from '@material-ui/core/MenuItem';
-import EditIcon from '@material-ui/icons/Edit';
-import IconButton from '@material-ui/core/IconButton';
 import NoteEdit from './NoteEdit';
 
 const styles = (theme: any) => ({
@@ -34,11 +28,14 @@ const styles = (theme: any) => ({
   },
 });
 
-function ListItemLink(props: any) {
-  return <ListItem button={true} component="a" {...props} />;
+interface IProps {
+  classes: any;
+  notes: any;
+  create: any;
+  edit: any;
 }
 
-class SimpleList extends React.Component<{ classes: any; notes: any; create: any; edit: any }, {}> {
+class SimpleList extends React.Component<IProps, {}> {
   public state = { selected: 0 };
 
   constructor(props: any) {

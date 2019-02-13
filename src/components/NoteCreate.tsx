@@ -29,11 +29,6 @@ export default class FormDialog extends React.Component<{ edit: any }, {}> {
     this.setState({ open: false });
   };
 
-  public handleEdit = () => {
-    this.setState({ open: false });
-    this.props.edit();
-  };
-
   public handleSubmit = (event: any) => {
     event.preventDefault();
     this.setState({ open: false, title: '', note: '' });

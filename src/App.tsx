@@ -6,10 +6,6 @@ import 'typeface-roboto';
 import ButtonAppBar from './components/ButtonAppBar';
 import NotesList from './components/NotesList';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
-import Input from '@material-ui/core/Input';
 import NoteCreate from './components/NoteCreate';
 
 const styles = (theme: any) => ({
@@ -22,9 +18,6 @@ const styles = (theme: any) => ({
       width: 600,
       marginLeft: 'auto',
       marginRight: 'auto',
-    },
-    input: {
-      width: '100%',
     },
   },
 });

@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import EditIcon from '@material-ui/icons/Edit';
-import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 
 const styles = (theme: any) => ({

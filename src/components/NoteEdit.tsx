@@ -16,10 +16,15 @@ const styles = (theme: any) => ({
   },
 });
 
-class NoteEdit extends React.Component<
-  { edit: any; classes: any; title: string; note: string; index: number },
-  {}
-> {
+interface IProps {
+  edit: any;
+  classes: any;
+  title: string;
+  note: string;
+  index: number;
+}
+
+class NoteEdit extends React.Component<IProps, {}> {
   public state = {
     open: false,
     note: this.props.note,
@@ -40,11 +45,6 @@ class NoteEdit extends React.Component<
     this.setState({ open: false });
   };
 
-  public handleEdit = () => {
-    this.setState({ open: false });
-    this.props.edit();
-  };
-
   public handleSubmit = (event: any) => {
     event.preventDefault();
     this.setState({ open: false, title: '', note: '' });
@@ -53,7 +53,7 @@ class NoteEdit extends React.Component<
 
   public handleChange(event: any) {
     const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const value = target.value;
     const name = target.name;
 
     this.setState({
@@ -65,7 +65,7 @@ class NoteEdit extends React.Component<
     const { classes } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
-        <IconButton onClick={this.handleClickOpen} className={classes.button} aria-label="Delete">
+        <IconButton onClick={this.handleClickOpen} className={classes.button}>
           <EditIcon />
         </IconButton>
         <Dialog
