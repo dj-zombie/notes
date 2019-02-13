@@ -16,8 +16,8 @@ A simple note taking application with the ability to add and edit notes.
 
 ### Heroku Deployment
 
-`$ heroku git:remote -a application-name`
-`$ git add .`
-`$ git commit -am 'prepare to deploy'`
-`$ git push heroku master`
+- `$ heroku git:remote -a application-name`
+- `$ git add .`
+- `$ git commit -am 'prepare to deploy'`
+- `$ git push heroku master`
 
